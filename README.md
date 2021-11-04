@@ -1,8 +1,10 @@
 # raf_shop
+Aplikasi RAF travel ini berbentuk aplikasi android yang dibuat menggunakan framework flutter yang menggunakan bahasa pemrograman dart. Aplikasi ini dibuat untuk mempermudah pelanggan dari RAF travel menemukan tempat wisata yang menarik untuk dikunjungi sekaligus tempat penginapan terdekat dengan wisata.
 
-A new Flutter project.
-
-## Getting Started
+## Contributor
+Fiesta Putra Reifa Al Ghifar (192410102016)
+Rafly RIzqi Ramadhan (192410102077)
+M. Dymas Alfin Zainur Roziqin (192410102089)
 
 This project is a starting point for a Flutter application.
 
