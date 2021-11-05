@@ -3,7 +3,7 @@ Aplikasi RAF travel ini berbentuk aplikasi android yang dibuat menggunakan frame
 
 ## Contributor
 - [Fiesta Putra Reifa Al Ghifar](https://github.com/FiestaPutraReifaAlGhifar) | (192410102016)
-- [Rafly Rizqi Ramadhan](https://github.com/rafriz20) | (192410102077)
+- [Rafly Rizqi Ramadhan](https://github.com/raflyriz20) | (192410102077)
 - [M. Dymas Alfin Zainur Roziqin](https://github.com/dymasalfin) (192410102089)
 
 
