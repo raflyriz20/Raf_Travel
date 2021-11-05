@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// import 'package:flutter_travel_ui/screens/profil_screen.dart';
 import 'package:flutter_travel_ui/widgets/destination_carousel.dart';
 import 'package:flutter_travel_ui/widgets/hotel_carousel.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -10,7 +11,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
-  int _currentTab = 0;
+  // int _currentTab = 0;
   List<IconData> _icons = [
     FontAwesomeIcons.umbrellaBeach,
     FontAwesomeIcons.hotel,
@@ -103,38 +104,47 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Color(0xFF3EBACE),
-        currentIndex: _currentTab,
-        onTap: (int value) {
-          setState(() {
-            _currentTab = value;
-          });
-        },
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(
-              FontAwesomeIcons.search,
-              size: 25.0,
-            ),
-            label: 'Search',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              FontAwesomeIcons.fileAlt,
-              size: 25.0,
-            ),
-            label: 'Booking',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              FontAwesomeIcons.userAlt,
-              size: 25.0,
-            ),
-            label: 'Profile',
-          ),
-        ],
-      ),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   selectedItemColor: Color(0xFF3EBACE),
+      //   currentIndex: _currentTab,
+      //   onTap: (int _currentIndex) {
+      //     setState(() {
+      //       if (_currentIndex == 1) {
+      //         Navigator.push(context,
+      //             MaterialPageRoute(builder: (context) => HomeScreen()));
+      //       } else if (_currentIndex == 2) {
+      //         Navigator.push(context,
+      //             MaterialPageRoute(builder: (context) => HomeScreen()));
+      //       } else if (_currentIndex == 3) {
+      //         Navigator.push(context,
+      //             MaterialPageRoute(builder: (context) => ProfileScreen()));
+      //       }
+      //     });
+      //   },
+      //   items: [
+      //     BottomNavigationBarItem(
+      //       icon: Icon(
+      //         FontAwesomeIcons.search,
+      //         size: 25.0,
+      //       ),
+      //       label: 'Search',
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(
+      //         FontAwesomeIcons.fileAlt,
+      //         size: 25.0,
+      //       ),
+      //       label: 'Booking',
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(
+      //         FontAwesomeIcons.userAlt,
+      //         size: 25.0,
+      //       ),
+      //       label: 'Profile',
+      //     ),
+      //   ],
+      // ),
     );
   }
 }

@@ -19,11 +19,11 @@ class Destination {
 List<Activity> activities_bwi = [
   Activity(
     imageUrl: 'assets/images/baluran.jpg',
-    name: 'Tn. Baluran\' Banyuwangi',
+    name: 'Tn. Baluran\ Banyuwangi',
     type: 'Sightseeing Tour',
     startTimes: ['9:00 am', '11:00 am'],
     rating: 5,
-    price: 30,
+    price: 300000,
   ),
   Activity(
     imageUrl: 'assets/images/alaspurwo.jpg',
@@ -31,7 +31,7 @@ List<Activity> activities_bwi = [
     type: 'Sightseeing Tour',
     startTimes: ['8:00 pm', '12:00 pm'],
     rating: 4,
-    price: 150,
+    price: 150000,
   ),
   Activity(
     imageUrl: 'assets/images/pulaumerah.jpg',
@@ -39,15 +39,15 @@ List<Activity> activities_bwi = [
     type: 'Sightseeing Tour',
     startTimes: ['12:30 pm', '2:00 pm'],
     rating: 5,
-    price: 125,
+    price: 125000,
   ),
-    Activity(
+  Activity(
     imageUrl: 'assets/images/ijen.jpeg',
     name: 'kawah Ijen',
     type: 'Sightseeing Tour',
     startTimes: ['12:30 pm', '8:00 pm'],
     rating: 5,
-    price: 200,
+    price: 200000,
   ),
 ];
 
@@ -58,7 +58,7 @@ List<Activity> activities_bws = [
     type: 'Sightseeing Tour',
     startTimes: ['12:00 am', '8:00 am'],
     rating: 5,
-    price: 200,
+    price: 200000,
   ),
   Activity(
     imageUrl: 'assets/images/blawan.jpg',
@@ -66,7 +66,7 @@ List<Activity> activities_bws = [
     type: 'Sightseeing Tour',
     startTimes: ['8:00 pm', '12:00 pm'],
     rating: 4,
-    price: 150,
+    price: 150000,
   ),
   Activity(
     imageUrl: 'assets/images/piramid.jpg',
@@ -74,7 +74,7 @@ List<Activity> activities_bws = [
     type: 'Sightseeing Tour',
     startTimes: ['12:30 pm', '8:00 pm'],
     rating: 5,
-    price: 200,
+    price: 200000,
   ),
 ];
 
@@ -85,7 +85,7 @@ List<Activity> activities_sbd = [
     type: 'Sightseeing Tour',
     startTimes: ['12:00 am', '6:00 am'],
     rating: 5,
-    price: 200,
+    price: 200000,
   ),
   Activity(
     imageUrl: 'assets/images/kampungkerapu.jpg',
@@ -93,7 +93,7 @@ List<Activity> activities_sbd = [
     type: 'Sightseeing Tour',
     startTimes: ['8:00 pm', '12:00 pm'],
     rating: 5,
-    price: 150,
+    price: 150000,
   ),
   Activity(
     imageUrl: 'assets/images/blekok.jpeg',
@@ -101,7 +101,7 @@ List<Activity> activities_sbd = [
     type: 'Sightseeing Tour',
     startTimes: ['12:30 pm', '6:00 pm'],
     rating: 4,
-    price: 120,
+    price: 120000,
   ),
 ];
 
@@ -112,7 +112,7 @@ List<Activity> activities_jbr = [
     type: 'Sightseeing Tour',
     startTimes: ['12:00 am', '6:00 am'],
     rating: 5,
-    price: 100,
+    price: 100000,
   ),
   Activity(
     imageUrl: 'assets/images/gambir.jpg',
@@ -120,7 +120,7 @@ List<Activity> activities_jbr = [
     type: 'Sightseeing Tour',
     startTimes: ['8:00 pm', '12:00 pm'],
     rating: 5,
-    price: 80,
+    price: 80000,
   ),
 ];
 
@@ -136,7 +136,8 @@ List<Destination> destinations = [
     imageUrl: 'assets/images/kawah_wurung.jpeg',
     city: 'Bondowoso',
     country: 'Indonesia',
-    description: 'kunjungi bondowoso untuk menikmati keindahan alam yang istimewa',
+    description:
+        'kunjungi bondowoso untuk menikmati keindahan alam yang istimewa',
     activities: activities_bws,
   ),
   Destination(

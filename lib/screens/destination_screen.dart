@@ -62,16 +62,6 @@ class _DestinationScreenState extends State<DestinationScreen> {
                       color: Colors.white,
                       onPressed: () => Navigator.pop(context),
                     ),
-                    Row(
-                      children: <Widget>[
-                        IconButton(
-                          icon: Icon(Icons.search),
-                          iconSize: 30.0,
-                          color: Colors.white,
-                          onPressed: () => Navigator.pop(context),
-                        ),
-                      ],
-                    ),
                   ],
                 ),
               ),
@@ -160,24 +150,28 @@ class _DestinationScreenState extends State<DestinationScreen> {
                                     maxLines: 2,
                                   ),
                                 ),
-                                Column(
-                                  children: <Widget>[
-                                    Text(
-                                      NumberFormat.simpleCurrency(locale: 'id')
-                                          .format(activity.price),
-                                      style: TextStyle(
-                                        fontSize: 14.0,
-                                        fontWeight: FontWeight.w600,
-                                        color: Colors.yellowAccent,
+                                Container(
+                                  child: Column(
+                                    children: <Widget>[
+                                      Text(
+                                        NumberFormat.simpleCurrency(
+                                                locale: 'id')
+                                            .format(activity.price),
+                                        style: TextStyle(
+                                          fontSize: 9,
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.yellowAccent,
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      'per orang',
-                                      style: TextStyle(
-                                        color: Colors.white70,
+                                      Text(
+                                        'per orang',
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          color: Colors.white70,
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),

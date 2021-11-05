@@ -26,7 +26,7 @@ class HotelCarousel extends StatelessWidget {
                   'See All',
                   style: TextStyle(
                     color: Theme.of(context).primaryColor,
-                    fontSize: 18.0,
+                    fontSize: 16.0,
                     fontWeight: FontWeight.w600,
                     letterSpacing: 1.0,
                   ),
@@ -84,9 +84,9 @@ class HotelCarousel extends StatelessWidget {
                                         .format(hotel.price) +
                                     '/ Malam',
                                 style: TextStyle(
-                                  fontSize: 16.0,
+                                  fontSize: 14.0,
                                   fontWeight: FontWeight.w500,
-                                  color: Colors.white,
+                                  color: Colors.yellowAccent,
                                 ),
                               ),
                             ],
