@@ -6,8 +6,6 @@ import 'package:flutter_travel_ui/widgets/header_widget.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-// import 'profile_page.dart';
-
 class RegistrationScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {

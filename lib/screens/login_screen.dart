@@ -2,13 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_travel_ui/common/theme_helper.dart';
-import 'package:flutter_travel_ui/screens/home_screen.dart';
+import 'package:flutter_travel_ui/screens/navbar.dart';
 import 'package:flutter_travel_ui/screens/registration_screen.dart';
 import 'package:flutter_travel_ui/widgets/header_widget.dart';
 
-// import 'forgot_password_page.dart';
-// import 'profile_page.dart';
-// import 'registration_page.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -130,7 +127,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     if (_formKey.currentState.validate()) {
                                 Navigator.of(context).pushAndRemoveUntil(
                                     MaterialPageRoute(
-                                        builder: (context) => HomeScreen()),
+                                        builder: (context) => navbar()),
                                     (Route<dynamic> route) => false);
                                     }
                                   },
