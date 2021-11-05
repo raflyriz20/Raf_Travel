@@ -42,6 +42,7 @@ class HotelCarousel extends StatelessWidget {
             itemCount: hotels.length,
             itemBuilder: (BuildContext context, int index) {
               Hotel hotel = hotels[index];
+              
               return Container(
                 margin: EdgeInsets.all(10.0),
                 width: 240.0,
