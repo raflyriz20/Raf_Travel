@@ -15,5 +15,5 @@ Sawetara sumber daya kanggo miwiti yen iki proyek Flutter pisanan sampeyan:
 - [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
 Kanggo bantuan miwiti karo Flutter, ndeleng 
-[online documentation](https://flutter.dev/docs), which offers tutorials,
+[online documentation](https://flutter.dev/docs), sing nawakake tutorial,
 conto, panuntun dhumateng pangembangan seluler, lan referensi API lengkap.
