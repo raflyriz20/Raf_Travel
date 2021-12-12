@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel_ui/screens/booking_screen.dart';
 import 'package:flutter_travel_ui/screens/home_screen.dart';
 import 'package:flutter_travel_ui/screens/profil_screen.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -10,7 +11,11 @@ class navbar extends StatefulWidget {
 
 class _navbarState extends State<navbar> {
   // Tiga layar
-  final List<Widget> _screens = [HomeScreen(), HomeScreen(), ProfileScreen()];
+  final List<Widget> _screens = [
+    HomeScreen(),
+    BookingScreen(),
+    ProfileScreen()
+  ];
 
   int _activeScreenIndex = 0;
 
