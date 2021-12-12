@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "652494849259",
+    "project_id": "rav-travel",
+    "storage_bucket": "rav-travel.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:652494849259:android:2edd215297ce79e216eaae",
+        "android_client_info": {
+          "package_name": "com.example.raf_shop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "652494849259-qjruhub4s9b63cn0notphapt9c194vs7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzSrybNWYe_chepns2mRZ-U8mgqEuwjGs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "652494849259-qjruhub4s9b63cn0notphapt9c194vs7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

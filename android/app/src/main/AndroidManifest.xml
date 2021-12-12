@@ -3,6 +3,8 @@
    <application
         android:label="raf_shop"
         android:icon="@mipmap/ic_launcher">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyC-06D0svlViMe8pZ0XNNbP44j6lGWas1A"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
