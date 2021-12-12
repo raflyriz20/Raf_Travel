@@ -1,6 +1,14 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_travel_ui/common/theme_color.dart';
+import 'package:flutter_travel_ui/screens/profil_edit_screen.dart';
+import 'package:flutter_travel_ui/services/methods.dart';
 import 'package:flutter_travel_ui/widgets/header_widget.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -11,6 +19,72 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  User user = FirebaseAuth.instance.currentUser;
+  String uid;
+  String fullname;
+  String username;
+  String address;
+  String email;
+  String phoneNumber;
+  String password;
+  String about;
+
+  showLogoutDialog(BuildContext context) {
+    Widget cancelButton = FlatButton(
+      child: Text("Tidak"),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    );
+    Widget continueButton = FlatButton(
+      child: Text("Ya"),
+      onPressed: () {
+        logout(context);
+      },
+    );
+
+    AlertDialog alert = AlertDialog(
+      title: Text("Konfirmasi"),
+      content: Text("Anda yakin akan keluar?"),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getUserData();
+  }
+
+  getUserData() async {
+    DocumentSnapshot getUserLog = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user.uid)
+        .get();
+    setState(() {
+      uid = user.uid;
+      fullname = getUserLog['fullname'];
+      username = getUserLog['username'];
+      address = getUserLog['address'];
+      email = getUserLog['email'];
+      phoneNumber = getUserLog['phone'];
+      password = getUserLog['password'];
+      about = getUserLog['about'];
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +125,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     height: 10,
                   ),
                   Text(
-                    'Rafly Rizqi Ramdhan',
+                    '${fullname}',
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
@@ -84,37 +158,36 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         Card(
                           child: Container(
-                            alignment: Alignment.topLeft,
-                            padding: EdgeInsets.all(15),
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.symmetric(horizontal: 15.0),
                             child: Column(
                               children: <Widget>[
                                 Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: <Widget>[
                                     ...ListTile.divideTiles(
                                       color: Colors.grey,
                                       tiles: [
                                         ListTile(
-                                          contentPadding: EdgeInsets.symmetric(
-                                              horizontal: 12, vertical: 4),
                                           leading: Icon(Icons.my_location),
                                           title: Text("Location"),
-                                          subtitle: Text("Banyuwangi"),
+                                          subtitle: Text("${address}"),
                                         ),
                                         ListTile(
                                           leading: Icon(Icons.email),
                                           title: Text("Email"),
-                                          subtitle: Text("Rafly@gmail.com"),
+                                          subtitle: Text("${email}"),
                                         ),
                                         ListTile(
                                           leading: Icon(Icons.phone),
                                           title: Text("Phone"),
-                                          subtitle: Text("0812242187513"),
+                                          subtitle: Text("${phoneNumber}"),
                                         ),
                                         ListTile(
                                           leading: Icon(Icons.person),
                                           title: Text("About Me"),
-                                          subtitle: Text(
-                                              "Saya suka berpetualang ke alam luar."),
+                                          subtitle: Text("${about}"),
                                         ),
                                       ],
                                     ),
@@ -123,7 +196,76 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ],
                             ),
                           ),
-                        )
+                        ),
+                        SizedBox(height: 15.0),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => ProfilEditScreen(),
+                              ),
+                            );
+                          },
+                          child: Card(
+                            semanticContainer: true,
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            color: Colors.grey,
+                            shadowColor: greyInputBorderColor,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                                side: BorderSide(
+                                  color: greyInputBorderColor,
+                                )),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                Container(
+                                  alignment: Alignment.center,
+                                  margin: EdgeInsets.symmetric(vertical: 15.0),
+                                  child: Text(
+                                    "Edit Profil",
+                                    style: blackTextStyle,
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 5.0),
+                        GestureDetector(
+                          onTap: () {
+                            showLogoutDialog(context);
+                          },
+                          child: Card(
+                            semanticContainer: true,
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            color: Colors.red,
+                            shadowColor: greyInputBorderColor,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                                side: BorderSide(
+                                  color: greyInputBorderColor,
+                                )),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                Container(
+                                  alignment: Alignment.center,
+                                  margin: EdgeInsets.symmetric(vertical: 15.0),
+                                  child: Text(
+                                    "Logout",
+                                    style: whiteTextStyle,
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   )
