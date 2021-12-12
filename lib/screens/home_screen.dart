@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_travel_ui/screens/maps_screen.dart';
 // import 'package:flutter_travel_ui/screens/profil_screen.dart';
 import 'package:flutter_travel_ui/widgets/destination_carousel.dart';
 import 'package:flutter_travel_ui/widgets/hotel_carousel.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -11,13 +14,30 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
+  ScrollController _scrollController = ScrollController();
   // int _currentTab = 0;
+
   List<IconData> _icons = [
     FontAwesomeIcons.umbrellaBeach,
     FontAwesomeIcons.hotel,
     FontAwesomeIcons.mapMarkedAlt,
+    Icons.chat,
   ];
-  List<String> name_icons = ['wisata', 'hotel', 'lokasi'];
+  List<String> name_icons = ['wisata', 'hotel', 'lokasi', 'chat'];
+
+  @override
+  void dispose() {
+    _scrollController.dispose(); // dispose the controller
+    super.dispose();
+  }
+
+  void _launchWhatsapp() async {
+    String number = '+6289667296633';
+    String message = 'Halo RAF TRAVEL... :D';
+    String url = "whatsapp://send?phone=$number&text=$message";
+
+    await canLaunch(url) ? launch(url) : print("Gagal Membuka Whatsapp");
+  }
 
   Widget _buildIcon(int index) {
     return GestureDetector(
@@ -25,6 +45,33 @@ class _HomeScreenState extends State<HomeScreen> {
         setState(() {
           _selectedIndex = index;
         });
+        if (_selectedIndex == 0) {
+          if (_scrollController.hasClients) {
+            final position = _scrollController.position.minScrollExtent;
+            _scrollController.animateTo(
+              position,
+              duration: Duration(seconds: 1),
+              curve: Curves.easeOut,
+            );
+          }
+        }
+        if (_selectedIndex == 1) {
+          if (_scrollController.hasClients) {
+            final position = _scrollController.position.maxScrollExtent;
+            _scrollController.animateTo(
+              position,
+              duration: Duration(seconds: 1),
+              curve: Curves.easeOut,
+            );
+          }
+        }
+        if (_selectedIndex == 2) {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (_) => MapsScreen()));
+        }
+        if (_selectedIndex == 3) {
+          _launchWhatsapp();
+        }
       },
       child: Container(
           height: 60.0,
@@ -62,6 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Color(0xFFF3F5F7),
       body: SafeArea(
         child: ListView(
+          controller: _scrollController,
           padding: EdgeInsets.symmetric(vertical: 30.0),
           children: <Widget>[
             Padding(

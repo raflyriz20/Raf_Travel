@@ -1,21 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_travel_ui/models/activity_model.dart';
-import 'package:flutter_travel_ui/models/destination_model.dart';
+import 'package:flutter_travel_ui/common/theme_color.dart';
+import 'package:flutter_travel_ui/models/hotel_model.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 
-class DestinationScreen extends StatefulWidget {
-  final Destination destination;
-
-  DestinationScreen({this.destination});
+class HotelScreen extends StatefulWidget {
+  final Hotel hotel;
+  HotelScreen({this.hotel});
 
   @override
-  _DestinationScreenState createState() => _DestinationScreenState();
+  _HotelScreenState createState() => _HotelScreenState();
 }
 
-class _DestinationScreenState extends State<DestinationScreen> {
+class _HotelScreenState extends State<HotelScreen> {
   User user = FirebaseAuth.instance.currentUser;
   String uid;
 
@@ -78,10 +77,6 @@ class _DestinationScreenState extends State<DestinationScreen> {
   }
 
   getUidLog() async {
-    DocumentSnapshot getUserLog = await FirebaseFirestore.instance
-        .collection('users')
-        .doc(user.uid)
-        .get();
     setState(() {
       uid = user.uid;
     });
@@ -115,10 +110,10 @@ class _DestinationScreenState extends State<DestinationScreen> {
                   ],
                 ),
                 child: Hero(
-                  tag: widget.destination.imageUrl,
+                  tag: widget.hotel.imageUrl,
                   child: ClipRRect(
                     child: Image(
-                      image: AssetImage(widget.destination.imageUrl),
+                      image: AssetImage(widget.hotel.imageUrl),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -138,45 +133,76 @@ class _DestinationScreenState extends State<DestinationScreen> {
                   ],
                 ),
               ),
-              Positioned(
-                left: 20.0,
-                bottom: 20.0,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      widget.destination.city,
-                      style: TextStyle(
-                        color: Colors.white,
-                        backgroundColor: Colors.black26,
-                        fontSize: 35.0,
-                        fontWeight: FontWeight.w600,
-                        letterSpacing: 1.2,
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        Icon(
-                          FontAwesomeIcons.locationArrow,
-                          size: 15.0,
-                          color: Colors.white70,
-                        ),
-                        SizedBox(width: 5.0),
-                        Text(
-                          widget.destination.country,
-                          style: TextStyle(
-                            color: Colors.white70,
-                            fontSize: 20.0,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
             ],
           ),
           Expanded(
+            child: Container(
+              padding: EdgeInsets.all(20.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Container(
+                    child: Text(
+                      "${widget.hotel.name}",
+                      style: blackTextStyle.copyWith(
+                        fontSize: 24.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 5.0),
+                  Container(
+                    child: Text(
+                      "Lokasi   : ${widget.hotel.address}",
+                      style: blackTextStyle.copyWith(
+                        fontSize: 15.0,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 5.0),
+                  Container(
+                    child: Text(
+                      "Harga   : ${NumberFormat.simpleCurrency(locale: 'id').format(widget.hotel.price)} / malam",
+                      style: blackTextStyle.copyWith(
+                        fontSize: 15.0,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 10.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      ElevatedButton.icon(
+                        onPressed: () {
+                          if (user != null) {
+                            print("Pesan : Berhasil Booking Hotel");
+                            FirebaseFirestore.instance
+                                .collection('booking_hotels')
+                                .add(({
+                                  'uid': uid,
+                                  'name': widget.hotel.name,
+                                  'price': widget.hotel.price,
+                                  'location': widget.hotel.address,
+                                  'image': widget.hotel.imageUrl,
+                                }));
+                            showDialogSuccess(context);
+                          } else {
+                            print("Pesan : Gagal Melakukan Booking");
+                            showDialogWrong(context);
+                          }
+                        },
+                        icon: Icon(Icons.book, size: 18),
+                        label: Text("Booking"),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          )
+          /* Expanded(
             child: ListView.builder(
               padding: EdgeInsets.only(top: 10, bottom: 15),
               itemCount: widget.destination.activities.length,
@@ -186,6 +212,7 @@ class _DestinationScreenState extends State<DestinationScreen> {
                   children: [
                     Container(
                       margin: EdgeInsets.fromLTRB(40, 5.0, 20.0, 5.0),
+                      height: 200.0,
                       width: double.infinity,
                       decoration: BoxDecoration(
                         color: Colors.cyan,
@@ -283,10 +310,9 @@ class _DestinationScreenState extends State<DestinationScreen> {
                                 ElevatedButton.icon(
                                   onPressed: () {
                                     if (user != null) {
-                                      print(
-                                          "Pesan : Berhasil Booking Destinasi");
+                                      print("Pesan : Berhasil Register");
                                       FirebaseFirestore.instance
-                                          .collection('booking_destinations')
+                                          .collection('bookings')
                                           .add(({
                                             'uid': uid,
                                             'name': activity.name,
@@ -331,7 +357,7 @@ class _DestinationScreenState extends State<DestinationScreen> {
                 );
               },
             ),
-          ),
+          ), */
         ],
       ),
     );
